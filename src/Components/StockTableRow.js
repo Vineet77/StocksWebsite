@@ -23,6 +23,7 @@ function StockTableRow({ stock }) {
 					<td> Loading ... </td>
 					<td> Loading ... </td>
 					<td> Loading ... </td>
+					<td> Loading ... </td>
 				</>
 			)}
 		</tr>

@@ -1,5 +1,5 @@
 /* eslint-env browser */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import StockTableRow from './StockTableRow';
 import upArrow from '../assets/up.png';
 import downArrow from '../assets/down.png';
@@ -17,7 +17,6 @@ function StockTable() {
 
 	function doSort(key, items) {
 		const order = sortConfig.key === key && sortConfig.order === 'asc' ? 'desc' : 'asc';
-		console.log(`sorting ${key} with order ${order}`);
 		setSortConfig({ key, order });
 		items.sort((a, b) => {
 			if (a[key] < b[key]) {
@@ -42,13 +41,6 @@ function StockTable() {
 	useEffect(() => {
 		fetchData();
 	}, []);
-
-	function getHeader(key) {
-		if (sortConfig.key === key) {
-			return key + (sortConfig.order === 'asc' ? '⬆' : '⬇');
-		}
-		return key;
-	}
 
 	function getHeaderBtn(key) {
 		return (
@@ -80,7 +72,7 @@ function StockTable() {
 				</thead>
 				<tbody>
 					{stocks.map((stock) => (
-						<StockTableRow stock={stock} />
+						<StockTableRow key={stock.sym} stock={stock} />
 					))}
 				</tbody>
 			</table>

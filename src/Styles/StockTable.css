@@ -11,30 +11,4 @@
     text-align: left;
 }
 
-table {
-    width: 90%;
-    margin-left: 5%;
-}
-
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-}
-
-tr:hover {
-    background-color: #ddd;
-}
-
-table thead tr th {
-    text-align: left;
-    position: sticky;
-    top: 0;
-    background-color: #666;
-    color: #fff;
-}
-
-td, th {
-    border: 1px solid #ddd;
-    padding: 8px;
-}
-
 
