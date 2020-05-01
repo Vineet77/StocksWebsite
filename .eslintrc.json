@@ -49,6 +49,7 @@
         "SwitchCase": 1
       }
     ],
-    "func-names": "off"
+    "func-names": "off",
+    "no-nested-ternary": "off"
   }
 }

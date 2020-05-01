@@ -1,31 +1,21 @@
 /* eslint-env browser */
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import '../Styles/StockTable.css';
 
-function StockTableRow({ sym }) {
-	const [stockInfo, setStockInfo] = useState({});
-
-	async function fetchData() {
-		const response = await fetch(`https://financialmodelingprep.com/api/v3/quote/${sym}`);
-		const data = await response.json();
-
-		setStockInfo(data[0]);
-	}
-
-	useEffect(() => {
-		fetchData();
-	}, []);
-
+function StockTableRow({ stock }) {
 	return (
 		<tr>
-			<td>{sym}</td>
-			{stockInfo.price ? (
+			<td className="TextCell">{stock.symbol}</td>
+			{stock.price ? (
 				<>
-					<td> {stockInfo.name} </td>
-					<td> {stockInfo.price} </td>
-					<td> {stockInfo.dayLow} </td>
-					<td> {stockInfo.dayHigh} </td>
+					<td className="TextCell"> {stock.name} </td>
+					<td className="PriceCell"> ${stock.price.toFixed(2)} </td>
+					<td className="PriceCell" style={{ color: stock.changesPercentage >= 0 ? 'green' : 'red' }}>
+						{stock.changesPercentage.toFixed(2)}%
+					</td>
+					<td className="PriceCell"> ${stock.dayLow.toFixed(2)} </td>
+					<td className="PriceCell"> ${stock.dayHigh.toFixed(2)} </td>
 				</>
 			) : (
 				<>
@@ -40,7 +30,7 @@ function StockTableRow({ sym }) {
 }
 
 StockTableRow.propTypes = {
-	sym: PropTypes.string,
+	stock: PropTypes.object,
 };
 
 export default StockTableRow;
